@@ -15,4 +15,19 @@ function onDeviceReady() {
  
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     //document.getElementById('deviceready').classList.add('ready');
+    $("#update").click(function(){
+      alert("Si que va");
+      $("#llistaPrincipal").empty();
+      $.ajax({
+        method: "GET",
+        url: "https://api.spaceflightnewsapi.net/v3/articles?_limit=5",
+        dataType: "json",
+      }).done(function (msg) {
+        for(let item in msg) {
+          console.log(msg[item]);
+        };
+      }).fail(function () {
+        alert("ERROR");
+      });
+      });
 }
